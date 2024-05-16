@@ -10,19 +10,19 @@ class Quiz extends StatelessWidget {
       children: [
         Image.asset(
           "assets/images/quiz-logo.png",
-          width: 250,
+          width: 300,
         ),
-        const SizedBox(height: 60),
+        const SizedBox(height: 8 0),
         const Text(
           "Learn Flutter the fun way!",
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
+            color:Color.fromARGB(255, 237, 223, 252),
+            fontSize: 24,
           ),
         ),
         const SizedBox(height: 30),
         OutlinedButton(
-          child: const Text('Button'),
+          child: const Text('Start Quiz'),
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.white,
             shape: const StadiumBorder(),

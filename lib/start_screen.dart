@@ -4,12 +4,12 @@ import 'package:adv_basics/quiz.dart';
 var startAlignment = Alignment.topLeft;
 var endAlignment = Alignment.bottomRight;
 
-class GradientContainer extends StatelessWidget {
-  const GradientContainer(this.color1, this.color2, {super.key});
+class StartScreen extends StatelessWidget {
+  const StartScreen(this.color1, this.color2, {super.key});
 
-  const GradientContainer.purple({super.key})
-      : color1 = const Color.fromARGB(255, 73, 7, 187),
-        color2 = const Color.fromARGB(255, 87, 28, 188);
+  const StartScreen.purple({super.key})
+      : color1 = const Color.fromARGB(255, 78, 13, 151),
+        color2 = const Color.fromARGB(255, 107, 15, 168);
 
   final Color color1;
   final Color color2;
