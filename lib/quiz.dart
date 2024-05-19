@@ -1,36 +1,49 @@
+import 'package:adv_basics/questions_screen.dart';
+import 'package:adv_basics/start_screen.dart';
 import 'package:flutter/material.dart';
 
-class Quiz extends StatelessWidget {
+class Quiz extends StatefulWidget {
   const Quiz({super.key});
+  State<Quiz> createState() {
+    return _QuizState();
+  }
+}
+
+class _QuizState extends State<Quiz> {
+  Widget? activeScreen;
+
+  @override
+  void initState() {
+    activeScreen = StartScreen(startQuiz);
+    super.initState();
+  }
+
+  void startQuiz() {
+    setState(() {
+      activeScreen = const QuestionsScreen();
+    });
+  }
 
   @override
   Widget build(context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(
-          "assets/images/quiz-logo.png",
-          width: 300,
-        ),
-        const SizedBox(height: 8 0),
-        const Text(
-          "Learn Flutter the fun way!",
-          style: TextStyle(
-            color:Color.fromARGB(255, 237, 223, 252),
-            fontSize: 24,
+    return MaterialApp(
+      home: Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 78, 13, 131),
+                Color.fromARGB(255, 107, 15, 168),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Center(
+            child: activeScreen,
           ),
         ),
-        const SizedBox(height: 30),
-        OutlinedButton(
-          child: const Text('Start Quiz'),
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.white,
-            shape: const StadiumBorder(),
-            side: const BorderSide(color: Colors.black, width: 1),
-          ),
-          onPressed: () {},
-        ),
-      ],
+      ),
     );
   }
 }
