@@ -1,9 +1,35 @@
 import 'package:flutter/material.dart';
 
+import 'package:adv_basics/data/questions.dart';
+import 'package:adv_basics/questions_summary.dart';
+
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key});
+  const ResultsScreen({super.key, required this.chosenAnswers});
+  final List<String> chosenAnswers;
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> summary = [];
+
+    for (var i = 0; i < chosenAnswers.length; i++) {
+      final Map<String, Object> questionData = {
+        'question_index': i,
+        'question': questions[i].text,
+        'correct_answer': questions[i].answers[0],
+        'user_answer': chosenAnswers[i],
+      };
+      summary.add(questionData);
+    }
+    return summary;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final numTotalQuestins = questions.length;
+    final numCorrectQuestions = summaryData
+        .where(
+          (data) => data['correct_answer'] == data['user_answer'],
+        )
+        .length;
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -11,9 +37,10 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('You answerd X out of Y questions correctly!'),
+            Text(
+                'You answered $numCorrectQuestions out of $numTotalQuestins questions correctly!'),
             const SizedBox(height: 30),
-            const Text('List of answers and questions...'),
+            QuestionsSummary(summaryData),
             const SizedBox(height: 30),
             TextButton(
               onPressed: () {},
